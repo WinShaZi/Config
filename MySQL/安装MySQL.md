@@ -15,7 +15,7 @@
     mysql -u root -p
 
     5.更改密码
-    alter user 'root'@'localhost' identified by 'Password'
+    alter user 'root'@'localhost' identified by 'Password';
 
 ## linux下安装mysql
 

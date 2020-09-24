@@ -7,10 +7,10 @@
     port = 3306
 
     # 自定义设置mysql的安装目录，即解压mysql压缩包的目录
-    basedir = C:\MySQL
+    basedir = C:\Develop\mysql-8.0.21-winx64
 
     # 自定义设置mysql数据库的数据存放目录
-    datadir = C:\MySQL\data
+    datadir = C:\Develop\mysql-8.0.21-winx64\data
 
     # 允许最大连接数
     max_connections = 200
