@@ -62,7 +62,7 @@
 
     sudo yum install -y git
 
-## 安装nafs
+## 安装ntfs
 
     sudo yum install -y ntfs-3g
 
