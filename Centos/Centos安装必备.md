@@ -10,12 +10,14 @@
 
     4.打开控制面板->网络和Internet->网络和共享中心->更改适配器设置->VMnet8->属性->Internet协议4，保证IP地址与子网IP同一网段
 
-    5.sudo vi /etc/sysconfig/network-scripts/ifcfg-ens33，修改如下信息
+    5.sudo vim /etc/sysconfig/network-scripts/ifcfg-ens33，修改如下信息
     BOOTPROTO=static
     ONBOOT=yes
     IPADDR=与子网IP同一网段
     NETMASK=子网掩码
     GATEWAY=网关
+    DNS1=114.114.114.114
+    DNS2=8.8.8.8
 
 ## 配置终端快捷键
 
@@ -70,3 +72,7 @@
 
     # 安装完重启生效
     sudo yum install -y ibus-libpinyin.x86_64
+
+## 安装字体
+
+    sudo yum install adobe-source-code-pro-fonts
