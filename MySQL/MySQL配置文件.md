@@ -15,7 +15,7 @@
     # 允许最大连接数
     max_connections = 200
 
-    # 允许连接失败的次数，这是为了防止有人从该主机试图攻击数据库系统
+    # 允许连接失败的次数
     max_connect_errors = 10
 
     # 服务端使用的字符集默认为UTF8
@@ -38,3 +38,44 @@
     # 设置mysql客户端连接服务端时默认使用的端口和默认字符集
     port=3306
     default-character-set=utf8
+
+## CentOS配置文件，/etc/my.cnf
+
+    [mysqld]
+    basedir = /usr/local/mysql
+    datadir = /usr/local/mysql/data
+    socket = /tmp/mysql.sock
+    user = lyh
+    # 端口号为3306
+    port = 3306
+    # 默认字符集为utf8mb4
+    character-set-server = utf8mb4
+    # 默认储存引擎为InnoDB
+    default_storage_engine = InnoDB
+    # 允许最大连接数
+    max_connections = 256
+    # 允许连接失败的次数
+    max_connect_errors = 128
+    # 输出路径不限
+    secure_file_priv =
+    # 不区分大小写
+    lower_case_table_names = 1
+    # 开启事件
+    event_scheduler=ON
+    # 禁用符号链接
+    symbolic-links=0
+
+    [client]
+    port = 3306
+    default-character-set = utf8mb4
+    socket = /tmp/mysql.sock
+
+    [mysql]
+    # 开始自动补全
+    auto-rehash
+
+    [mysqld_safe]
+    # 指定错误日志路径
+    log-error = /usr/local/mysql/log/mysqld.log
+    # 指定pid路径
+    pid-file = /usr/local/mysql/pid/mysqld.pid

@@ -6,7 +6,7 @@
     2.写入
     [wandisco-git]
     name=Wandisco GIT Repository
-    baseurl=http://opensource.wandisco.com/centos/7/git/$basearch/
+    baseurl=http://opensource.wandisco.com/centos/7/git/x86_64/
     enabled=1
     gpgcheck=1
     gpgkey=http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
