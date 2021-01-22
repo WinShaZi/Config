@@ -2,19 +2,24 @@
 
 ## windows下安装mysql，进入mysql/bin
 
-    1.安装服务
+1.安装服务
+
     mysqld --install
 
-    2.初始化
+2.初始化
+
     mysqld --initialize-insecure --user=mysql
 
-    3.启动服务
+3.启动服务
+
     net start mysql
 
-    4.登陆
+4.登陆
+
     mysql -u root -p
 
-    5.更改密码
+5.更改密码
+
     alter user 'root'@'localhost' identified by 'Password';
 
 ## CentOS下安装mysql
@@ -28,20 +33,32 @@ BASE_PATH="/usr/local/mysql"
 PASS_WORD="asdf"
 MYSQL="$1"
 
+if [ -z ${MYSQL} ]; then
+    echo "输入安装包路径"
+    exit
+fi
+
+mkdir ${BASE_PATH}
+
 # 解压mysql安装包
 xz -dk ${MYSQL}
 tar -xvf ${MYSQL%.*}
-mv ${FILE%%.*} ${BASE_PATH}
+rm -rf ${MYSQL%.*}
+mv ${MYSQL%.*.*}/* ${BASE_PATH}
+rm -rf ${MYSQL%.*.*}
 
 cd ${BASE_PATH} || exit
 # 创建必要文件，赋予必要权限
-mkdir -p data log pid
+mkdir data log pid
 touch ${BASE_PATH}/log/mysqld.log
-chown root:lyh ${BASE_PATH}
-chown -R lyh:lyh ${BASE_PATH}/*
+
+groupadd mysql
+useradd -r -g mysql mysql
+chown root:mysql ${BASE_PATH}
+chown -R mysql:mysql ${BASE_PATH}/*
 
 # 安装mysql
-${BASE_PATH}/bin/mysqld --initialize-insecure --lower-case-table-names=1 --user=lyh --basedir=${BASE_PATH} --datadir=${BASE_PATH}/data
+${BASE_PATH}/bin/mysqld --initialize-insecure --lower-case-table-names=1 --user=mysql --basedir=${BASE_PATH} --datadir=${BASE_PATH}/data
 
 # 添加mysql到系统服务
 cp ${BASE_PATH}/support-files/mysql.server /etc/init.d/mysqld
