@@ -76,6 +76,6 @@
 
     [mysqld_safe]
     # 指定错误日志路径
-    log-error = /usr/local/mysql/log/mysqld.log
+    log-error = /var/log/mysqld.log
     # 指定pid路径
-    pid-file = /usr/local/mysql/pid/mysqld.pid
+    pid-file = /var/run/mysqld/mysqld.pid
