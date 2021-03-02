@@ -209,6 +209,47 @@ echo -e "\033[32m mysql设置更新完成\n \033[0m"
 
 ### CentOS下卸载mysql
 
+#### 卸载tar.xz安装
+
 ``` shell
+#!/bin/bash
+
+BASE_PATH="/usr/local/mysql"
+
+if [ "$(whoami)" != "root" ]; then
+    echo -e "\033[31m 请使用root账户\n \033[0m"
+    exit
+fi
+
+echo -e "\033[32m 卸载mysql... \033[0m"
+
+# 停止mysqld服务
+systemctl stop mysqld
+chkconfig --del mysqld
+
+# 移除mysql用户
+if [ $(egrep "^mysql" /etc/passwd | wc -l) != 0 ]; then
+    userdel -f mysql
+fi
+
+# 删除mysql安装包
+for item in `rpm -qa | grep mysql`; do
+    rpm -e --nodeps $item
+done
+
+# 移除mysql文件
+rm -rf /usr/local/mysql*
+rm -rf /usr/bin/mysql*
+rm -rf /usr/lib/mysql*
+rm -rf /var/lib/mysql*
+rm -rf /usr/lock/subsys/mysql*
+rm -rf /etc/my.cnf*
+rm -rf /etc/init.d/mysql*
+
+# 移除mysql环境变量
+sed -i "/mysql/d" /etc/profile
+source /etc/profile
+
+echo -e "\033[32m 卸载mysql成功 \033[0m"
 
 ```
