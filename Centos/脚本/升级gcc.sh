@@ -1,6 +1,3 @@
-# 升级gcc
-
-``` shell
 #!/bin/bash
 
 yum install -y centos-release-scl
@@ -17,4 +14,3 @@ ln -s /opt/rh/devtoolset-8/root/bin/g++ /usr/bin/g++
 
 gcc -v
 g++ -v
-```
